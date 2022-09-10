@@ -1,7 +1,7 @@
-$$We have g\ \epsilon\ (z_p,*)g ϵ (z 
+We have $g\ \epsilon\ (z_p,*)g ϵ (z 
 p
 ​
- ,∗) where pp is 455470209427676832372575348833455470209427676832372575348833.
+ ,∗)$ where pp is 455470209427676832372575348833455470209427676832372575348833.
 Given: Three pairs of numbers representing (a,\ password*g^a)(a, password∗g 
 a
  ). We define these as (a_1,p_1), (a_2,p_2), (a_3,p_3)(a 
