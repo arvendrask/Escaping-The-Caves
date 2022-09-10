@@ -1,0 +1,52 @@
+The first thing done was enter the commands required to reach the encrypted text. Upon seeing the encrypted text, it was observed that it was a jumble of letters. To decipher this we decided to write a C++ program to aid us in our decoding of the encrypted text
+
+On seeing the cipher and this being assignment 1 we decided to attack with the assumption that this was a substitution cipher. 
+
+On seeing the cipher we observed that after full stop and exclamation marks the letter was capital so we inferred that the punctuation marks were not encoded. We also saw that spaces were irregular, So we inferred that spaces were randomised and hence removed spaces from the cipher text.
+
+Now we fed the cipher text to our C++ code. We first converted all letters to lowercase and performed a frequency analysis on it. Top 3 were:
+'c' -> 13.79 %
+'f' -> 10.73 %
+'k' -> 10.34 %
+
+Note: we mapped lowercase letters from cipher-text space to uppercase letters in plain-text space to distinguish between our mappings and original cipher text initially, which would be corrected later on.
+Note: All uppercase letters are plain-text and all lowercase letters are cipher-text in our below explanation.
+
+Since there is a gap of 3% between first and other 2 we mapped 'c' -> 'E', as "e" occurs highest in the frequency table.
+
+But because there was a small gap between % of 'f' and 'k' we decided to try mapping both to 'T' (second highest in frequency table) and see which fit better. Mapping 'f' -> 'T' gave occurrences of TiE in many places(including some places just after punctuation's) which has great similarity to the word "the".  
+Hence we chose to map 'f'->'T' and 'i'->'H'.
+
+Now we observed that in the last line there was an occurrence of 'THokokTHE', which seemed akin to "THIS IS THE" so we mapped 'o'->'I' and 'k'->'S'. 
+This gave more occurrences of 'THIS' and 'IS' in cipher text so we accepted this mapping.
+
+We saw that after "THIS IS THE" was formed there was a 'e' at the end of text. We guessed that the letters have been shifted as well and this 'e' connects with the letters at the start of cipher text. We observed 'eImST' and since it occurs after "THIS IS THE" we guessed it could be a numerical word. From this theory we guessed it to be "FIRST" and mapped 'e'-'F' and 'm'-'R'.
+We then observed that there was "SHIFTEy" present and guessed 'y' to be 'D'. Hence we mapped 'y'->'D'. This gave the occurrence of "IqTEREST" and we guessed it to be "INTEREST" and mapped 'q'->'N'
+
+This gave the occurrence of "THEREISNgTHINagFINTERESTINTHE" which we guessed to be "THERE IS NOTHING OF INTEREST IN THE" and hence mapped 'g'->'O' and 'a'->'G'
+
+
+Now we observed "nEENSHIFTEDnr2juhpES"
+In the English language "SHIFTED BY" commonly occurs together so we considered the possibility that 'n'->'B' and 'r'->'Y'. This also gives the word 'BEEN' which is in agreement with our consideration. If we consider "BEENSHIFTEDBY2juhpES" to be correct we can also guess "juhpES" to be "PLACES". Hence in this step we did the following mappings:
+'n'->'B', 'r'->'Y', 'j'->'P', 'u'-'L', 'h'->'A', 'p'-'C'
+
+We now are left with: 
+"IRSTCHAdBEROFTHECAsES.ASYOvCANSEE,THEREISNOTHINGOFINTERESTINTHECHAdBER.SOdEOFTHELATERCHAdBERSlILLBEdOREINTERESTINGTHANTHISONE!THECODEvSEDFORTHISdESSAGEISASIdPLESvBSTITvTIONCIPHERINlHICHDIGITSHAsEBEENSHIFTEDBY2PLACES.THEPASSlORDISIRxY9v1xDGTlITHOvTTHExvOTES.THISISTHEF"
+
+On seeing the cipher-text we can easily guess the following mappings
+'v'->'U', 'l'->'W', 'd'->M, 's'->'V', 'x'->'Q'
+
+We have now obtained:
+"IRSTCHAMBEROFTHECAVES.ASYOUCANSEE,THEREISNOTHINGOFINTERESTINTHECHAMBER.SOMEOFTHELATERCHAMBERSWILLBEMOREINTERESTINGTHANTHISONE!THECODEUSEDFORTHISMESSAGEISASIMPLESUBSTITUTIONCIPHERINWHICHDIGITSHAVEBEENSHIFTEDBY2PLACES.THEPASSWORDISIRQY9U1QDGTWITHOUTTHEQUOTES.THISISTHEF"
+
+We now converted all letters to lowercase and and manually made the ones that were uppercase in cipher-text also uppercase in our obtained text.
+
+"This is the first chamber of the caves. As you can see, there is nothing of interest in the chamber. Some of the later chambers will be more interesting than this one! The code used for this message is simple substitution cipher in which digits have been shifted by 2 places. The password is iRqy9U1qdgt without the quotes."
+
+Now for the password(All letters here are in plain-text):
+Since the digit 2 has also been shifted we must find the original number to be shifted by. Let the original number be x. It has been shifted by x places hence,
+                                                             2*x = 2 (mod 10)
+Hence x=1 or x=6. Therefore our password is either iRqy8U0qdgt or iRqy3U5qdgt. We tried both and got the correct password as iRqy3U5qdgt.
+
+The final Plain-text is:
+This is the first chamber of the caves. As you can see, there is nothing of interest in the chamber. Some of the later chambers will be more interesting than this one! The code used for this message is simple substitution cipher in which digits have been shifted by 6 places. The password is iRqy3U5qdgt without the quotes
