@@ -1,0 +1,53 @@
+REFERENCES:
+All references were taken from Wikipedia(https://en.wikipedia.org/wiki/Playfair_cipher) and GeeksForGeeks(https://www.geeksforgeeks.org/playfair-cipher-with-examples/)
+For decoding morse code we used (https://science.howstuffworks.com/innovation/inventions/morse-code.htm#:~:text=Morse%20Code%20is%20a%20method,Samuel%20Morse%20and%20Alfred%20Vail)
+
+EXPLANATION:
+After typing the command "go" the first time, we came to a text that had something encoded in Morse code. Upon further reading we saw that the words "PLAY FAIR" were the only ones' that were all capital. This gave a hint that "PLAY FAIR" meant something and on searching online we discovered that "playfair" was a type of encryption algorithm. On decryption of the Morse code we got the word "CRYPTANALYSIS". 
+-.-.  -> C
+.-.   -> R
+-.--  -> Y
+.--.  -> P
+-     -> T
+.-    -> A
+-.    -> N 
+.-    ->A
+.-..  -> L
+-.--  ->Y 
+...    -> S
+..     -> I
+...    -> S 
+Since the playfair algorithm requires a key we guessed that the word "CRYPTANALYSIS" was that key. 
+We entered the command "back" to go to the initial text and entered "read" to further read which lead to the encrypted text.
+
+Here we observed that the punctuation's seemed to be at the correct places and since the playfair cipher has no encoding for punctuation, they were not encoded in the encrypted text. The same logic was followed for other non-alphabetic characters. Hence {" . " , " , " , "_" ," " " } were mapped to the identical character and location in plaintext as it was in ciphertext. We also saw that the spaces were following English grammar and hence assumed that they were in the right location so we kept their location same in the plaintext as it was in ciphertext. 
+
+Since we were hinted at "playfair" algorithm we decided to try breaking the encrypted text using the "playfair" algorithm and the key as "CRYPTANALYSIS". 
+We split the ciphertext into pairs of letters in the following way:
+
+[DF] [UL][YP] [XO] [CQ][D L][FW][C R][UB][HE][DY], [CQ][DY][G L][N X][DY][L E][GI][YI][G L][MP] [CQ][DY][F.
+L][YF][NH] [HX][PZ] [CQ][F Y][NI][LX][KP][B "N][DC][B_A][N_B][BH][CN]" [PQ] [FQ] [CQ][PK][ZB][K. O][LC] [PM][C
+U][NU][G Y][MB] [IP][YD][ID][CQ] [OX][Y C][MB] [LD][ZP] [AU][LH][DF][Y. C][X O][AL][G R][MB] [FW][GI] [PM][X
+B][NT][IP] [ZL][SW][S L][FW][FE] [PQ] [ZC][YG][Y K][IB][AT] [XM][NK][I P][MB][YD].
+
+Using the key we formed the 5x5 key-square of the playfair cipher. 
+C R Y P T
+A N L S I
+B D E F G
+H K M O Q
+U V W X Z
+Since it was a simple act of seeing the pairs and decoding using the key-square, we did it manually. Note we did not do any changes to the spaces and punctuations and after decoding each pair we put the letters in the same place as they were in ciphertext. Same has been followed for spaces and punctuations. 
+
+BE WARY OF THE NEXT CHAMBER, THERE IS VERY LITTLE IOY THERE. SPEAK OUTX THE PASSWORD "ABRA_CA_DABRA" TO GO THROUGH. MAY YOU HAVE THE STRENGTH FOR THE NEXT CHAMBER. TO FIND THE EXIT YOU FIRST WILXL NEXED TO UTTER MAGIC WORDS THERE.
+
+Now a thing to note in playfair cipher is that the letter "I" is used to represent both "I" and "J".
+Therefor the word "IOY" in our plaintext was corrected to "JOY"
+Another thing to note is that if there are a odd number of letters( in plaintext) then the letter X (generally) is added as filler. So our decoded text so far contained these filler X's. Since we did not know where all the X's was added we went through the plaintext decoded so far and removed the locations where X was not needed. Thus we obtained,
+OUTX as OUT
+WILXL as WILL
+NEXED as NEED
+
+The decoded plaintext was:
+BE WARY OF THE NEXT CHAMBER, THERE IS VERY LITTLE JOY THERE. SPEAK OUT THE PASSWORD "ABRA_CA_DABRA" TO GO THROUGH. MAY YOU HAVE THE STRENGTH FOR THE NEXT CHAMBER. TO FIND THE EXIT YOU FIRST WILL NEED TO UTTER MAGIC WORDS THERE.
+
+Therefore the we entered "ABRA_CA_DABRA"  and cleared the level.
